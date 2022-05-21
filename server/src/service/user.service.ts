@@ -1,7 +1,8 @@
 import userModel from "../model/user.model"
+import {UserInput} from "../model/user.model"
 
 const createUser = async (input: any) => {
-    try {
+    try{
         return await userModel.create(input);
     } catch (error) {
         console.log(error);
