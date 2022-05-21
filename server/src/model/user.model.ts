@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose, {ObjectId} from "mongoose";
 import bcrypt from "bcrypt";
 
 const userSchema = new mongoose.Schema({
@@ -53,6 +53,22 @@ userSchema.pre("save", async function (next) {
   user.password = hash;
   return next();
 });
+
+userSchema.statics.login = async function (email: any, password: any) {
+  const user = await this.findOne({ email });
+  if (user) {
+      const auth = await bcrypt.compare(password, user.password);
+      console.log(auth)
+      if (auth) {
+        return user;
+      } else{
+        throw Error('incorrect password');  
+      }
+  } else{
+    throw Error('incorrect email');
+  }
+};
+
 const userModel = mongoose.model("user", userSchema);
 
 export default userModel;
