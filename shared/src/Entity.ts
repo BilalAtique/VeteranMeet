@@ -47,6 +47,16 @@ export type EntitySector =
   | "literature"
   | "health";
 
+export const allEntitySectors: Set<EntitySector> = new Set([
+  "engineering",
+  "business",
+  "technology",
+  "education",
+  "arts",
+  "literature",
+  "health",
+]);
+
 export function veteranTitle(veteranStars: number): string {
   if (veteranStars >= 100000) return "Eternal Sage";
   if (veteranStars >= 70000) return "Platinum Veteran";
