@@ -1,7 +1,6 @@
 import mongoose from "mongoose";
 import bcrypt from "bcrypt";
 
-
 const userSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -18,29 +17,33 @@ const userSchema = new mongoose.Schema({
     minlength: 5,
   },
   location: {
-    type:String,
-    required: true
+    type: String,
+    required: true,
   },
-  sector:{
+  sector: {
     type: String,
     enum: ["Engineering", "Buisness"],
-    required: true
+    required: true,
   },
-  stars:{
+  stars: {
     type: Number,
-    default: 0
+    default: 0,
   },
-  followers: [{
-    type: mongoose.Schema.Types.ObjectId,
-    default: []
-  }],
-  following: [{
-    type: mongoose.Schema.Types.ObjectId,
-    default: []
-  }]
+  followers: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      default: [],
+    },
+  ],
+  following: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      default: [],
+    },
+  ],
 });
 
-userSchema.pre("save", async function(next){
+userSchema.pre("save", async function (next) {
   let user = this;
   console.log(user);
   const salt = await bcrypt.genSalt(10);

@@ -46,3 +46,14 @@ export type EntitySector =
   | "arts"
   | "literature"
   | "health";
+
+export function veteranTitle(veteranStars: number): string {
+  if (veteranStars >= 100000) return "Eternal Sage"
+  if (veteranStars >= 70000) return "Platinum Veteran"
+  if (veteranStars >= 65000) return "Sapphire Veteran"
+  if (veteranStars >= 60000) return "Diamond Veteran"
+  if (veteranStars >= 50000) return "Golden Veteran"
+  if (veteranStars >= 40000) return "Ruby Veteran"
+  if (veteranStars >= 25000) return "Silver Veteran"
+  return "Veteran";
+}
