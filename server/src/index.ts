@@ -11,7 +11,7 @@ const app = express();
 app.use(express.json());
 
 
-app.listen(3000, async() => {
+app.listen(3030, async() => {
     console.log("App is listening on port 3000");
     await connect();
     routes(app);
